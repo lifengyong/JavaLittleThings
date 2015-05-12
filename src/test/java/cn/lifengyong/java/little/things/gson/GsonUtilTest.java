@@ -51,8 +51,7 @@ public class GsonUtilTest {
 		stu02.setTeacher(teacher);
 		teacher.getStudents().add(stu02);
 		
-		String json = GsonUtil.pojoToJson(teacher);
-		System.out.println(json);
+		GsonUtil.pojoToJson(teacher);
 	}
 	
 	/**
