@@ -1,5 +1,6 @@
 package cn.lifengyong.java.little.things.gson;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
@@ -34,6 +35,17 @@ public class GsonUtil {
 	}
 	
 	/**
+	 * 返回可以排除某些字段不进行json转换的Gson对象
+	 * 
+	 * @param exclusionStrategy 排除策略
+	 * @return
+	 */
+	public static Gson createGsonExclusionStrategy(GsonExclusionStrategy exclusionStrategy ){
+	    return new GsonBuilder().setExclusionStrategies(exclusionStrategy).
+	    		serializeNulls().create();
+	}
+	
+	/**
 	 * 转成json数据为java对象
 	 * 
 	 * @param json 需要转换的json字符串
@@ -55,4 +67,5 @@ public class GsonUtil {
 		json = StringUtils.replace(json, "null", "\"\"");
 		return json;
 	}
+	
 }
