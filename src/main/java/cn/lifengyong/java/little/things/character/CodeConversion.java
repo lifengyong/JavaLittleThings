@@ -1,0 +1,29 @@
+package cn.lifengyong.java.little.things.character;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class CodeConversion {
+  /**
+   * unicode转中文
+   * 
+   * @param str 转换前的字符串
+   * @return 转换后的字符串
+   */
+  public static String unicodeToString(String str) {
+    
+    Pattern pattern = Pattern.compile("(\\\\u(\\p{XDigit}{4}))");
+    Matcher matcher = pattern.matcher(str);
+    char ch;
+    while (matcher.find()) {
+      //group 6728
+      String group = matcher.group(2);
+      //ch:'木' 26408
+      ch = (char) Integer.parseInt(group, 16);
+      //group1 \u6728
+      String group1 = matcher.group(1);
+      str = str.replace(group1, ch + "");
+    }
+    return str;
+  }
+}
